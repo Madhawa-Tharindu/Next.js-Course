@@ -3,6 +3,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 const navLinks = [
   { name: "Register", href: "/register" },
@@ -12,9 +13,13 @@ const navLinks = [
 
 export default function AuthNavbar() {
   const pathname = usePathname();
+  const [input, setInput] = useState("");
 
   return (
     <div className="mb-4">
+        <div>
+            <input value={input} onChange={(e) => setInput(e.target.value)} /> 
+        </div>
       {navLinks.map((link) => {
         const isActive = pathname.startsWith(link.href);
         return (
