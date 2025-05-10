@@ -1,15 +1,21 @@
-export default function Docs({ params } : {
+interface Props {
     params: {
-        slug: string[];
+      slug: string[];
     };
-}) {
-    if(params.slug.length === 2) {
-        return <h1>
-            Viewing docs for feature {params.slug[0]} and concept {params.slug[1]}
+  }
+  
+  export default function Docs({ params }: Props) {
+    const { slug } = params;
+  
+    if (slug.length === 2) {
+      return (
+        <h1>
+          Viewing docs for feature {slug[0]} and concept {slug[1]}
         </h1>
+      );
+    } else if (slug.length === 1) {
+      return <h1>Viewing docs for feature {slug[0]}</h1>;
     }
-    else if (params.slug.length === 1) {
-        return <h1>Viewing docs for feature {params.slug[0]}</h1>
-    }
-    return <h1>Docs home page</h1>
-}
+  
+    return <h1>Docs home page</h1>;
+  }
